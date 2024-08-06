@@ -1,22 +1,64 @@
 import { Grid, Stack } from "@mui/material";
 import { Item } from "../../common/Item";
 import Button from "@mui/material/Button";
-import ShoppingBagIcon from "@mui/icons-material/ShoppingBag";
-import Radio from "@mui/material/Radio";
-import RadioGroup from "@mui/material/RadioGroup";
-import FormControlLabel from "@mui/material/FormControlLabel";
-import FormControl from "@mui/material/FormControl";
-import FormLabel from "@mui/material/FormLabel";
-
+import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import Typography from "@mui/material/Typography";
 
 import Skeleton from "@mui/material/Skeleton";
+import { addProductToCart } from "../../services/cartService.js";
+import { useState } from "react";
+import Dropdown from "../Dropdown/Dropdown.js";
+import { useSnackbar } from "notistack";
 
 const ProductDetail = ({ product }: { product: any }) => {
+  const [size, setSize] = useState(null);
   console.log("++++++++++++++++++++++++", product);
 
+  const { enqueueSnackbar } = useSnackbar();
+  const showSnackbar = () => {
+    enqueueSnackbar("Item added to cart", {
+      variant: "success",
+      anchorOrigin: {
+        vertical: "top",
+        horizontal: "right",
+      },
+    });
+  };
   const handleChange = (e: any) => {
     console.log("selected value is ", e.target.value);
+  };
+
+  const handleDropdownSelection = (selectedSize: any) => {
+    console.log("selected value is ", selectedSize);
+    setSize(selectedSize);
+  };
+
+  const handleAddToCart = (e) => {
+    if (!size) {
+      enqueueSnackbar("Please select a size", {
+        variant: "error",
+        anchorOrigin: {
+          vertical: "bottom",
+          horizontal: "right",
+        },
+      });
+
+      return;
+    }
+
+    console.log("ajay ", e, product);
+    const { imageUrl, price, title } = product;
+
+    const productToAdd = {
+      imageUrl,
+      price,
+      title,
+      quantity: 1,
+      size,
+    };
+
+    addProductToCart(productToAdd);
+    showSnackbar();
   };
   return (
     <Grid container spacing={0}>
@@ -54,35 +96,15 @@ const ProductDetail = ({ product }: { product: any }) => {
               </Typography>
               <Button
                 variant="contained"
-                endIcon={<ShoppingBagIcon />}
-                onClick={() => {}}
+                endIcon={<ShoppingCartIcon />}
+                onClick={handleAddToCart}
               >
-                Add to bag
+                Add to cart
               </Button>
-              <FormControl>
-                <FormLabel id="demo-row-radio-buttons-group-label">
-                  Select a size
-                </FormLabel>
-                <RadioGroup
-                  aria-labelledby="demo-row-radio-buttons-group-label"
-                  name="row-radio-buttons-group"
-                >
-                  {product.variantSizes.map((size: any) => {
-                    return (
-                      <FormControlLabel
-                        value={size.filterCode}
-                        control={<Radio />}
-                        label={size.filterCode}
-                        onChange={handleChange}
-                      />
-                    );
-                  })}
-                </RadioGroup>
-              </FormControl>
-              {/* <Typography gutterBottom variant="body1" component="div">
-                <Typography variant="h6">Product Details: </Typography>
-                {product.title}
-              </Typography> */}
+              <Dropdown
+                variantSizes={product.variantSizes}
+                onChange={handleDropdownSelection}
+              />
             </Stack>
           </Grid>
         </Grid>

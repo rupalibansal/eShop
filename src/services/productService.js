@@ -56,7 +56,7 @@ export const createDataForDB = () => {
   data.forEach((product) => {
     products.push({
       title: product.name,
-      price: product.price.formattedValue,
+      price: product.price.value,
       variantSizes: product.variantSizes,
       favorite: false,
       featured: false,
@@ -65,4 +65,24 @@ export const createDataForDB = () => {
   });
 
   return products;
+};
+
+export const updateProductById = async (id, isFavorite) => {
+  // get the reference
+  const docRef = doc(db, "products", id);
+  // look up the document based on the reference
+  const snapshot = await getDoc(docRef);
+  // if a document with id doesn't exist throw an error
+  if (!snapshot.exists()) {
+    throw new Error(
+      "Could not find product in productsCollection with id " + id
+    );
+  }
+
+  const updatedProduct = {
+    ...snapshot.data(),
+    favorite: isFavorite,
+  };
+
+  await updateDoc(docRef, updatedProduct);
 };

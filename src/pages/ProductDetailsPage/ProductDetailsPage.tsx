@@ -18,7 +18,7 @@ const ProductDetailsPage = () => {
         console.log(data.id);
         setProduct(data);
       })
-      .catch((error) => {
+      .catch((error: any) => {
         setFetchStatus("FAILED");
         setError(error);
       });

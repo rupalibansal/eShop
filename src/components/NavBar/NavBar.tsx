@@ -7,8 +7,15 @@ import Typography from "@mui/material/Typography";
 import InputBase from "@mui/material/InputBase";
 // import MenuIcon from "@mui/icons-material/Menu";
 import SearchIcon from "@mui/icons-material/Search";
-import { Button } from "@mui/material";
+import { Button, Badge, IconButton } from "@mui/material";
 import { Link } from "react-router-dom";
+import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
+import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlined";
+import {
+  addProductToCart,
+  removeProductFromCart,
+  updateProductQuantityInCartCollection,
+} from "../../services/cartService.js";
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -53,6 +60,19 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 }));
 
 const NavBar = () => {
+  const handleClick = (e) => {
+    const product = {
+      imageUrl:
+        "https://image.hm.com/assets/hm/a0/3e/a03eb34a8f55d25c6e0b9af5bb75449414786a28.jpg",
+      price: 44,
+      quantity: 1,
+      size: "M",
+      title: "Mens shirt",
+    };
+    addProductToCart(product);
+    removeProductFromCart("Z0aPE0hFylNn6f1chN6y");
+    updateProductQuantityInCartCollection("Z0aPE0hFylNn6f1chN6y", 2);
+  };
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">
@@ -60,6 +80,7 @@ const NavBar = () => {
           <Button component={Link} to="/" variant="text" color="inherit">
             Luxe Threads
           </Button>
+
           <Typography
             variant="h6"
             noWrap
@@ -77,6 +98,16 @@ const NavBar = () => {
               inputProps={{ "aria-label": "search" }}
             />
           </Search>
+          <IconButton color="inherit" component={Link} to="/favourites">
+            <Badge badgeContent={2} color="error">
+              <FavoriteBorderOutlinedIcon />
+            </Badge>
+          </IconButton>
+          <IconButton color="inherit" component={Link} to="/cart">
+            <Badge badgeContent={2} color="success">
+              <ShoppingCartIcon />
+            </Badge>
+          </IconButton>
         </Toolbar>
       </AppBar>
     </Box>
