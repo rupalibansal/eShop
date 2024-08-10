@@ -10,7 +10,7 @@ const BasicCarousel = ({ products }: { products: any }) => {
   const images = [img1, img2, img3, img4];
   return (
     <Carousel>
-      {images?.map((image: any, i: any) => (
+      {images?.map((image: any) => (
         <>
           <img style={{ maxWidth: 3000, height: 300 }} src={image} />
         </>
