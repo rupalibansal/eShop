@@ -8,10 +8,7 @@ import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlin
 import FavoriteOutlinedIcon from "@mui/icons-material/FavoriteOutlined";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import {
-  updateProductById,
-  getAllProducts,
-} from "../../services/productService.js";
+import { updateProductById } from "../../services/productService.js";
 
 const Product = ({
   productData,

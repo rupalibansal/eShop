@@ -20,6 +20,18 @@ Welcome to the E-Commerce Platform for Men's Clothing! This project is built usi
   - Shows the total order value.
   - Includes a "Checkout" button (currently disabled as integration with Stripe is pending).
 
+## Data Management
+
+### Firebase
+
+This project uses Firebase Realtime Database to store product details. The initial data is seeded from the H&M API using a script that:
+
+- uses the data fetched from the H&M API.
+- Transforms the data to be compatible with the Firebase database structure.
+- Pushes the transformed data to Firebase.
+
+The seeding script can be found in `productService.js`. Ensure you configure Firebase with your project's credentials before running the script.
+
 ## Future Enhancements
 
 - **Stripe Payment Integration**: The checkout button will be enabled and linked to Stripe’s payment API for processing transactions.
