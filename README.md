@@ -1,30 +1,29 @@
-# React + TypeScript + Vite
+# E-Commerce Platform for Men's Clothing
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Welcome to the E-Commerce Platform for Men's Clothing! This project is built using React.js and provides a seamless online shopping experience for men's clothing. Below you'll find an overview of the project, its features, and instructions on how to get started.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **Home Page**: Displays a grid of men's clothing products.
+- **Product Details**: Clicking on a product takes you to its detail page where:
 
-## Expanding the ESLint configuration
+  - You can select the size from a dropdown menu.
+  - Add the product to your cart using the "Add to Cart" button.
+  - Notifications are displayed using the `notistack` package:
+    - Success message if the product is added to the cart.
+    - Error message if the size is not selected.
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+- **Cart Page**:
+  - Displays all products added to the cart.
+  - Provides options to increase or decrease the quantity for each product.
+  - Updates the total price based on quantity changes.
+  - Shows the total order value.
+  - Includes a "Checkout" button (currently disabled as integration with Stripe is pending).
 
-- Configure the top-level `parserOptions` property like this:
+## Future Enhancements
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json', './tsconfig.app.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
-```
+- **Stripe Payment Integration**: The checkout button will be enabled and linked to Stripe’s payment API for processing transactions.
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+Thank you for using our E-Commerce Platform for Men's Clothing! We hope you enjoy shopping for your favorite clothes.
+
+### 🚀 [Launch Live Project]()
