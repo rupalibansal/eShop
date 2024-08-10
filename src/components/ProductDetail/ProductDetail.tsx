@@ -3,7 +3,6 @@ import { Item } from "../../common/Item";
 import Button from "@mui/material/Button";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import Typography from "@mui/material/Typography";
-
 import Skeleton from "@mui/material/Skeleton";
 import { addProductToCart } from "../../services/cartService.js";
 import { useState } from "react";
@@ -12,7 +11,6 @@ import { useSnackbar } from "notistack";
 
 const ProductDetail = ({ product }: { product: any }) => {
   const [size, setSize] = useState(null);
-  console.log("++++++++++++++++++++++++", product);
 
   const { enqueueSnackbar } = useSnackbar();
   const showSnackbar = () => {
@@ -46,7 +44,6 @@ const ProductDetail = ({ product }: { product: any }) => {
       return;
     }
 
-    console.log("ajay ", e, product);
     const { imageUrl, price, title } = product;
 
     const productToAdd = {

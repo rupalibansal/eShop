@@ -1,6 +1,4 @@
 import Carousel from "react-material-ui-carousel";
-import { Paper, Button } from "@mui/material";
-// Import images directly
 import img1 from "../../assets/men1.jpg";
 import img2 from "../../assets/men2.jpg";
 import img3 from "../../assets/hmgoepprod3.jpeg";

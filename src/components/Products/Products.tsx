@@ -1,12 +1,10 @@
 import { Grid } from "@mui/material";
 import { Item } from "../../common/Item.js";
-// import { useEffect, useState } from "react";
 import { DisplayProducts } from "../DisplayProduct/DisplayProduct.js";
 import { getAllProducts } from "../../services/productService.js";
 import LoadingSkeleton from "../LoadingSkelton/LoadingSkelton.js";
 import BasicCarousel from "../BasicCarousel/BasicCarousel.js";
-import { useContext, useEffect, useState } from "react";
-import ProductsContext from "../../context/ProductsContext.js";
+import { useEffect, useState } from "react";
 
 const Products = () => {
   const [allProducts, setAllProducts] = useState(null);
